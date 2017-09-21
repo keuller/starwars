@@ -1,0 +1,11 @@
+html, body { background-color: #EFEFF0 }
+.topnav-left { padding-left: 15px !important; }
+.appbrand-spacer { display:block; padding-top:7em; }
+.button-group > button { margin-right: 5px; }
+.is-spaceless { padding-top:0 !important; }
+.navbar-fixed { 
+    top:0; z-index:250; position:fixed; width:100%; 
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(64,59,64,1);
+    -moz-box-shadow: 0px 1px 3px 0px rgba(64,59,64,1);
+    box-shadow: 0px 1px 3px 0px rgba(64,59,64,1);
+} 

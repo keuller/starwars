@@ -1,0 +1,4 @@
+node_modules/*
+starwars.db
+yarn.lock
+public/dist/*
