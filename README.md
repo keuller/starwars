@@ -1,6 +1,6 @@
 ## Starwars CRUD
 
-This project show a simple CRUD application based on API (SWAPI)[https://swapi.co/api]
+This project show a simple CRUD application based on API [SWAPI](https://swapi.co/api)
 
 It is a basic CRUD just for Vehicles. Actually the first time when application starts, it load all data from API to local database (SQLite3).
 
