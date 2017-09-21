@@ -1,12 +1,12 @@
 {
   "name": "starwars-crud",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple CRUD application based on swapi.co",
   "main": "index.js",
   "scripts": {
     "start": "npm run build && npm run run:api",
-    "run:api": "node src/api/index.js",
-    "run:web": "cross-env NODE_ENV=development webpack --color -w",
+    "server": "node src/server/index.js",
+    "client": "cross-env NODE_ENV=development webpack --color -w",
     "build": "cross-env NODE_ENV=production webpack --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
