@@ -4,11 +4,11 @@ This project show a simple CRUD application based on API [SWAPI](https://swapi.c
 
 It is a basic CRUD just for Vehicles. Actually the first time when application starts, it load all data from API to local database (SQLite3).
 
-The source code is divied in 2 modules: *api* and *web*.
+The source code is divied in 2 modules: **server** and **web**.
 
-*server* is the backend server, based on Koa & RxJS.
+**server** is the backend server, based on Koa & RxJS.
 
-*web* is the frontend application, based on React/Redux/Redux-Observable.
+**web** is the frontend application, based on React/Redux/Redux-Observable.
 
 To run the application locally, make sure you have SQlite3 installed and NPM or Yarn. Clone this repo and type the command listed above.
 
