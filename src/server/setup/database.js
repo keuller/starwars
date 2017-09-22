@@ -25,7 +25,7 @@ module.exports = (function(db) {
                     CREATE TABLE IF NOT EXISTS starships (
                     id INT NOT NULL PRIMARY KEY, name VARCHAR(50), model VARCHAR(35), 
                     manufacturer VARCHAR(50), credits INT, length NUMERIC(10,2), crew INT,
-                    speed INT, passengers INT, capacity INT, CONSUMABLES VARCHAR(30),
+                    speed INT, passengers INT, capacity INT, consumables VARCHAR(30),
                     class VARCHAR(30), created VARCHAR(30))
                 `)
         

@@ -28,10 +28,10 @@ module.exports = (function(db) {
 
         save(data) {
             let now = (new Date().toISOString())
-            let isNew = (data.id == 0)
-            let key = (isNew ? util.genId() : data.id)
+            let isNewVehicle = (data.id == 0)
+            let key = (isNewVehicle ? util.genId() : data.id)
 
-            if (isNew) {
+            if (isNewVehicle) {
                 return Observable.create(observer => {
                     db.run('INSERT INTO vehicles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
                         key, data.name, data.model, data.manufacturer,
@@ -39,7 +39,7 @@ module.exports = (function(db) {
                         data.capacity, data.consumables, data.class, now
                     ], (err, ret) => {
                         if (err) return observer.error(err)
-                        observer.next({ status: 'Created' })
+                        observer.next({ message: 'Vehicle created', key })
                         observer.complete()
                     })
                 })
@@ -53,10 +53,10 @@ module.exports = (function(db) {
                 db.run('UPDATE vehicles SET name=?, model=?, manufacturer=?, class=?, credits=?, length=?, crew=?, speed=?, passengers=?, capacity=?, consumables=? WHERE id=?', [
                     data.name, data.model, data.manufacturer, data.class,
                     data.credits, data.length, data.crew, data.speed, data.passengers,
-                    data.capacity, data.consumables, key
+                    data.capacity, data.consumables, data.id
                 ], (err, ret) => {
                     if (err) return observer.error(err)
-                    observer.next({ status: 'Updated' })
+                    observer.next({ message: 'Vehicle updated' })
                     observer.complete()
                 })
             })
@@ -66,7 +66,7 @@ module.exports = (function(db) {
             return Observable.create(observer => {
                 db.run('DELETE FROM vehicles WHERE id=?', [id], (err) => {
                     if (err) return observer.error(err)
-                    observer.next({ status: `Vehicle ${id} removed` })
+                    observer.next({ message: `Vehicle removed` })
                     observer.complete()
                 })
             })
