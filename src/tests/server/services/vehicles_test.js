@@ -38,7 +38,7 @@ test('Not found vehicle', (t) => {
     })
 })
 
-test('Save new vehicle', (t) => {
+test('Create vehicle', (t) => {
     const vehicle = {
         id: 0, name: 'Test Vehicle', model: 'Test Model', manufacturer: 'Test', 
         class: 'test', credits: 100, crew: 100, speed: 500, capacity: 100, length: 10
@@ -48,8 +48,7 @@ test('Save new vehicle', (t) => {
     t.notEqual(source, null)
     source.subscribe(result => {
         t.notEqual(result, undefined)
-        t.equal(result.message, 'Vehicle created', `Vehicle created with ID ${result.key}`)
-        t.assert(result.key > 100)
+        t.assert(result.key > 100, `Vehicle created with ID ${result.key}`)
         key = result.key
         t.end()
     })
@@ -61,11 +60,10 @@ test('Update vehicle', (t) => {
         credits: 7000, length: 3, crew: 2, speed:635, passengers:1, capacity:0, class:'speeder'
     }
 
-    let source = service(db).update(vehicle)
+    let source = service(db).save(vehicle)
     t.notEqual(source, null)
     source.subscribe(result => {
         t.notEqual(result, undefined)
-        t.equal(result.message, 'Vehicle updated')
         t.end()
     })
 })
@@ -74,8 +72,7 @@ test('Remove vehicle', t => {
     t.notEqual(key, null)
 
     service(db).remove(key).subscribe(result => {
-        t.notEqual(result, undefined)
-        t.equal(result.message, 'Vehicle removed')
+        t.equal(result, undefined)
         t.end()
     })
 })

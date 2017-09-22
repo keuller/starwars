@@ -21,10 +21,13 @@ module.exports = (function(router) {
     })
     
     router.post('/vehicles', async (ctx) => {
+        const data = ctx.request.body
         await service(ctx.state.db)
-            .save(ctx.request.body)
+            .save(data)
             .toPromise()
-            .then(data => { ctx.body = data })
+            .then(key => { 
+                ctx.body = (key == data.id) ? { message: 'Vehicle updated' } : { message:'Vehicle created', key }
+            })
             .catch(err => ctx.throw(500, err.message))
     })
 
@@ -32,7 +35,9 @@ module.exports = (function(router) {
         await service(ctx.state.db)
             .remove(ctx.params.id)
             .toPromise()
-            .then(data => { ctx.body = data })
+            .then(() => { 
+                ctx.body = { message: 'Vehicle removed' }
+            })
             .catch(err => ctx.throw(500, err.message))
     })
 
