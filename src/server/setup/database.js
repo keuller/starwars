@@ -48,58 +48,50 @@ module.exports = (function(db) {
 
         isEmpty(tableName) {
             return Observable.create(observer => {
-                db.serialize(() => {
-                    db.get(`SELECT COUNT(*) as total FROM ${tableName};`, [], (err, row) => {
-                        if (err) {
-                            observer.error(err)
-                            return
-                        }
-                        observer.next(row.total == 0)
-                        observer.complete()
-                    })
+                db.get(`SELECT COUNT(*) as total FROM ${tableName};`, [], (err, row) => {
+                    if (err) {
+                        observer.error(err)
+                        return
+                    }
+                    observer.next(row.total == 0)
+                    observer.complete()
                 })
             })
         },
 
         fillVehicles(vehicles) {
-            db.serialize(() => {
-                let stmt = db.prepare("INSERT INTO vehicles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
-                vehicles.forEach(item => {
-                    key = extractId(item)
-                    stmt.run(key, item.name, item.model, item.manufacturer, 
-                        item.cost_in_credits, item.length, item.crew, 
-                        item.max_atmosphering_speed, item.passengers,
-                        item.cargo_capacity, item.consumables, item.vehicle_class, item.created)
-                })
-                stmt.finalize()
+            let stmt = db.prepare("INSERT INTO vehicles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
+            vehicles.forEach(item => {
+                key = extractId(item)
+                stmt.run(key, item.name, item.model, item.manufacturer, 
+                    item.cost_in_credits, item.length, item.crew, 
+                    item.max_atmosphering_speed, item.passengers,
+                    item.cargo_capacity, item.consumables, item.vehicle_class, item.created)
             })
+            stmt.finalize()
         },
 
         fillStarships(starships) {
-            db.serialize(() => {
-                let stmt = db.prepare("INSERT INTO starships VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
-                starships.forEach(record => {
-                    key = extractId(record)
-                        stmt.run(key, record.name, record.model, record.manufacturer, 
-                        record.cost_in_credits, record.length, record.crew, 
-                        record.max_atmosphering_speed, record.passengers,
-                        record.cargo_capacity, record.consumables, record.vehicle_class, record.created)
-                })
-                stmt.finalize()
+            let stmt = db.prepare("INSERT INTO starships VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
+            starships.forEach(record => {
+                key = extractId(record)
+                    stmt.run(key, record.name, record.model, record.manufacturer, 
+                    record.cost_in_credits, record.length, record.crew, 
+                    record.max_atmosphering_speed, record.passengers,
+                    record.cargo_capacity, record.consumables, record.vehicle_class, record.created)
             })
+            stmt.finalize()
         },
 
         fillFilms(list) {
-            db.serialize(() => {
-                let stmt = db.prepare("INSERT INTO films VALUES (?, ?, ?, ?, ?, ?, ?, ?)")
-                list.forEach(record => {
-                    key = extractId(record)
-                    stmt.run(key, record.title, record.episode_id, 
-                        record.opening_crawl, record.director, record.producer, 
-                        record.release_date, record.created)
-                })
-                stmt.finalize()
+            let stmt = db.prepare("INSERT INTO films VALUES (?, ?, ?, ?, ?, ?, ?, ?)")
+            list.forEach(record => {
+                key = extractId(record)
+                stmt.run(key, record.title, record.episode_id, 
+                    record.opening_crawl, record.director, record.producer, 
+                    record.release_date, record.created)
             })
+            stmt.finalize()
         }
     }
 
