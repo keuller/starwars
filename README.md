@@ -6,7 +6,7 @@ It is a basic CRUD just for Vehicles. Actually the first time when application s
 
 The source code is divied in 2 modules: *api* and *web*.
 
-*api* is the backend server, based on Koa & RxJS.
+*server* is the backend server, based on Koa & RxJS.
 
 *web* is the frontend application, based on React/Redux/Redux-Observable.
 
