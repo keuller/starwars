@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs'
+import { fromPromise } from 'rxjs/observable/fromPromise'
 
 export function types(...args) {
     let actionTypes = {}
@@ -10,16 +10,14 @@ export function types(...args) {
 }
 
 export function action(type) {
-    return function(data) {
-        return { type, payload: data }
-    }
+    return (data) => ({ type, payload: data })
 }
 
 export function request(url, method, data) {
     if (method && data) {
         let headers = { 'Content-Type':'application/json' }
           , config = { method, headers, body: JSON.stringify(data) }
-        return Observable.fromPromise(fetch(`${url}`, config).then(resp => resp.json()))
+        return fromPromise(fetch(`${url}`, config).then(resp => resp.json()))
     }
-    return Observable.fromPromise(fetch(`${url}`).then(resp => resp.json()))
+    return fromPromise(fetch(`${url}`).then(resp => resp.json()))
 }

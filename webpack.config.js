@@ -43,7 +43,9 @@ let config = {
 
     resolve: {
         modules: ['src/web', 'node_modules'],
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx'],
+        alias: {
+        }
     },
 
     devServer: {
