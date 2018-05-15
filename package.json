@@ -32,8 +32,8 @@
           "targets": {
             "browsers": [
               "last 2 versions",
-              "chrome >= 61",
-              "firefox >= 55"
+              "chrome >= 65",
+              "firefox >= 59"
             ]
           }
         }
@@ -44,7 +44,8 @@
     ]
   },
   "dependencies": {
-    "bulma": "^0.6.0",
+    "ajv": "^6.5.0",
+    "bulma": "^0.7.1",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.2.1",
@@ -54,10 +55,10 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-action-helper": "^1.1.1",
-    "redux-observable": "^0.17.0",
-    "request": "^2.83.0",
-    "rxjs": "^5.5.2",
-    "sqlite3": "^3.1.13",
+    "redux-observable": "^0.18.0",
+    "request": "^2.86.0",
+    "rxjs": "^5.5.10",
+    "sqlite3": "^4.0.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
@@ -76,8 +77,8 @@
     "file-loader": "^1.1.5",
     "flow-bin": "^0.58.0",
     "node-sass": "^4.6.0",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.19.0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
     "supertest": "^3.0.0",
     "tape": "^4.8.0",
     "webpack": "^3.4.1",

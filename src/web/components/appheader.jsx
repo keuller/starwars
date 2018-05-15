@@ -5,7 +5,7 @@ const AppHeader = (props) => (
         <div className="navbar-brand topnav-left">
             <a href="/" className="navbar-item">
                 <span className="icon"><i className="fa fa-home"></i></span> 
-                <span>Starwars CRUD</span>
+                <span>STARWARS INVENTORY APP</span>
             </a>
         </div>
         <div className="navbar-menu">
